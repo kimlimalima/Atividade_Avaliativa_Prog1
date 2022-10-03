@@ -1,10 +1,13 @@
+from shutil import ExecError
+
+
 arquivo_tratado = []
 
-with open('C:\\Users\\kimli\\Desktop\\Atividade_Avaliativa\\dados_usuario.csv', encoding = 'utf-8') as file:
+with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Primeira_Questão\\dados_usuario.csv', encoding = 'utf-8') as file:
     for linha in file:
         arquivo_tratado.append(linha.strip().split(','))
 
-
+'''
 def procuraNome(nome = ' '):
         """
         Documento lido: (dados_usuario.csv)
@@ -12,7 +15,7 @@ def procuraNome(nome = ' '):
         Apresenta a quantidade e uma lista com os registros curja a culuna name do documento inicie com o valor do parâmetro nome.
 
         Arguments:
-        nome : Uma string. Default valor = '' (string vazia)
+        nome : Uma string. Default valor = ' ' (string vazia)
 
         Returns:
         Retorna a quantidade de aparições de nome e uma lista com suas aparições.
@@ -26,8 +29,8 @@ def procuraNome(nome = ' '):
                                 contador += 1
                 return contador, lista
         
-        except:
-                print('EROOOOOOOOOOOOOOOUUUUUUUU')
+        except ValueError:
+                print('Valor inválido')
                 
 contador, lista = procuraNome('Samuel')
 print(f'{contador}\n{lista}')
@@ -51,26 +54,29 @@ def quantidadeGender(ano, sexo):
                 Retorna
         """
         try:
-
+                if type(sexo) != str: raise TypeError
+                if ano < 0: raise ValueError
                 lista = []
                 contador = 0
                 for linhas in arquivo_tratado:
                         if sexo in linhas[2]:
-                                if ano <= linhas[1]:
+                                if str(ano) <= linhas[1]:
                                         lista.append(linhas)
                                         contador += 1
                 return contador, lista
-        except:
-                print('Telascarmenó')
+        except TypeError:
+                print('Tipo de valor inválido')
+        except ValueError: 
+                print('Valor inválido')
                 
-contador, lista = quantidadeGender('2002','M')
-quantidadeGender()
+contador, lista = quantidadeGender(2002, "F")
+print(contador, lista)
 
-def substringARG(arg):
+
+def substringARG(arg = ' '):
         """
                 Documento lido: (dados_usuario.csv)
 
-                        
 
                 Arguments:
                         
@@ -79,20 +85,20 @@ def substringARG(arg):
                 
         """
         try:
+                if type(arg) != str: raise Exception('Tipo de argumento inválido')
                 lista = []
                 contador = 0
                 for linha in arquivo_tratado:
                         for argumento_do_arquivo in linha:
-                                if str(arg) in argumento_do_arquivo:
+                                if arg in argumento_do_arquivo:
                                         lista.append(linha)
                                         contador += 1
                 return contador, lista
-        except:
-                print('EROOOOOOOOOOOOOOOUUUUUUUU')
+        except Exception as e:
+                print(e)
                 
 contador, lista = substringARG('muel')
 print(f'{contador}\n{lista}')
-
 
 def procuraNumero(numero):
         """
@@ -107,20 +113,24 @@ def procuraNumero(numero):
                 
         """
         try:
+                if int(numero) < 0: raise Exception("Valor inválido")
+                if type(numero) != int and type(numero) != str: raise Exception('Tipo de argumento inválido')
                 lista = []
                 contador = 0
                 for linhas in arquivo_tratado:
-                        if numero == linhas[4]:
-                                lista.append(linhas)
+                        if str(numero) == linhas[4]:
+                                lista.append(linhas[0])
                                 contador += 1
                 return contador, lista
-        except:
-                print('EROOOOOOOOOOOOOOOUUUUUUUU')
+        except Exception as e:
+                print(e)
                 
-contador, lista = procuraNumero('5')
-print(f'{contador}\n{lista}')
+contador, lista = procuraNumero(5)
+print(f'{contador}/n {lista}')
 
-def novo_cadastro(nome, ano, sexo, numero):
+'''
+
+def novo_cadastro(nome = ' ', ano = 0, sexo = ' ', numero =0):
         """
         Documento lido: (dados_usuario.csv)
 
@@ -131,18 +141,25 @@ def novo_cadastro(nome, ano, sexo, numero):
                 
         """
         try:
+            if int(ano) <= 0: raise Exception('Valor inválido')
+            if type(ano) != int and type(ano) != str: raise Exception('Tipo de argumento inválido')
+            if int(numero) <= 0: raise Exception('Valor inválido')
+            if type(numero) != int and type(numero) != str: raise Exception('Tipo de argumento inválido')
+            if type(sexo) != str: raise Exception('Tipo de argumento inválido')
+            if type(nome) != str: raise Exception('Tipo de argumento inválido')
             id = int(arquivo_tratado[-1][0])+1
-            with open('C:\\Users\\kimli\\Desktop\\Atividade_Avaliativa\\dados_usuario.csv','a', encoding ='utf-8') as file:
+            with open('\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Primeira_Questão\\dados_usuario.csv','a', encoding ='utf-8') as file:
                 file.write(f'{id},{nome},{ano},{sexo},{numero}\n')
                 
-        except:
-            print('EROOOOOOOOOOOOOOOUUUUUUUU')
+        except Exception as e :
+            print(e)
 
-novo_cadastro('Kim','2002','M','01')
+novo_cadastro('Kim','2002','M', 5)
 
+'''
 
-procuraNome()
-quantidadeGender()
+#quantidadeGender()
 substringARG()
 procuraNumero()
 novo_cadastro()
+'''

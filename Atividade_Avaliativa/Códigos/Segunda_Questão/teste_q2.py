@@ -1,25 +1,30 @@
-cadeia = 'ATGCCCCAACTAAATACCGCCGTATGACCCACCATAATTACCCCCATACTCCTGACACTATTTCTCGTCACCCAACTAAAAATATTAAATTCAAATTACCATCTACCCCCCTCACCAAAACCCATAAAAATAAAAAACTACAATAAACCCTGAGAACCAAAATGAACGAAAATCTATTCGCTTCATTCGCTGCCCCCACAATCCTAG'
-def procuraPadrao(cadeia, padrao):
-        """
-        Documento lido: (dados_usuario.csv)
 
+cadeia = 'ATGCCCCAACTAAATACCGCCGTATGACCCACCATAATTACCCCCATACTCCTGACACTATTTCTCGTCACCCAACTAAAAATATTAAATTCAAATTACCATCTACCCCCCTCACCAAAACCCATAAAAATAAAAAACTACAATAAACCCTGAGAACCAAAATGAACGAAAATCTATTCGCTTCATTCGCTGCCCCCACAATCCTAG'
+def procuraPadrao(cadeia, padrao = ' '):
+        """
+        Documento lido: (dados_DNA.txt)
+
+        Dada a atríbuição múltipla de argumentos para os parâmetros {cadeia} e {padrao}
                         
 
         Arguments:
+                cadeia : Um string. Passada de forma posicional pelo usuário
+                padrao : Uma string. Passada de forma posiciojal pelo usuário
                         
-
         Returns:
+                Retorna a quantidade de vezes em que ocorre a aparição de {padrao} em {cadeia}.
                         
         """
         try:
+                if type(padrao) != str: raise Exception("Tipo de padrão inválido") 
                 tamanho = len(padrao)
                 contador = 0
                 for i in range(len(cadeia)):
                         if cadeia[i:tamanho+i] == padrao:
                                 contador += 1
                 return contador
-        except:
-                print('EEEROUUUUUUUUUUUUUUUUUUUUUUU')
+        except Exception as e:
+                print(e)
 restultado = procuraPadrao(cadeia,'ATG')
 print(restultado)
 
@@ -27,23 +32,29 @@ print(restultado)
 
 cadeia = 'ATGCCCCAACTAAATACCGCCGTATGACCCACCATAATTACCCCCATACTCCTGACACTATTTCTCGTCACCCAACTAAAAATATTAAATTCAAATTACCATCTACCCCCCTCACCAAAACCCATAAAAATAAAAAACTACAATAAACCCTGAGAACCAAAATGAACGAAAATCTATTCGCTTCATTCGCTGCCCCCACAATCCTAG'
 
-def TestboolPadrao(cadeia, padrao):
+def TestboolPadrao(cadeia = ' ', padrao = ' '):
         """
         Documento lido: (dados_usuario.csv)
 
                         
 
         Arguments:
-                        
+            cadeia : Um string. Passada de forma posicional pelo usuário
+            padrao : Uma string. Passada de forma posiciojal pelo usuário 
 
         Returns:
-                        
+            Retorna um valor booleano, resultado da verificação de padrão em cadeia
         """
+        try:
+            if type(padrao) != str: raise Exception("Tipo de padrão inválido")
         
-        if padrao in cadeia:
+            if padrao in cadeia:
                 return True
-        else:
+            else:
                 return False
+        except Exception as e:
+                print(e)
+        
 
 resultado = TestboolPadrao(cadeia, 'ATG')
 print(resultado)
@@ -61,10 +72,10 @@ def frequenciaPadrao():
                         
     """
 
-    with open('C:\\Users\\kimli\\Desktop\\Atividade_Avaliativa\\dados_DNA.txt',encoding='utf-8') as file:
+    with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Segunda_Questão\\dados_DNA.txt',encoding='utf-8') as file:
         linhas = file.readlines()
 
-    with open('C:\\Users\\kimli\\Desktop\\Atividade_Avaliativa\\dados_DNA.txt','w', encoding='utf-8') as file:
+    with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Segunda_Questão\\dados_DNA.txt','w', encoding='utf-8') as file:
         file.write('sequence,FREQ_ATGCCA,TEM_ATGCCA\n')
         for cadeia in linhas[1:]:
             freq = procuraPadrao(cadeia, 'ATGCCA')
@@ -76,7 +87,7 @@ frequenciaPadrao()
 
 arquivo_tratado = []
 
-with open('C:\\Users\\kimli\\Desktop\\Atividade_Avaliativa\\dados_DNA.txt', encoding = 'utf-8') as file:
+with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Segunda_Questão\\dados_DNA.txt', encoding = 'utf-8') as file:
     for linha in file:
         arquivo_tratado.append(linha.strip().split(','))
 
@@ -150,4 +161,3 @@ def frequenciaMaximaPadrao():
                 lista_index.append(indices)
     return lista_index
 frequenciaMaximaPadrao()
-
