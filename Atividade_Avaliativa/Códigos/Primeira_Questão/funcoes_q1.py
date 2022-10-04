@@ -36,9 +36,6 @@ def procuraNome(nome = ' '):
                 print('Tipo de variavel inválida')
                 
 
-
-
-
 def quantidadeGender(ano, sexo):
         """
         Documento lido: (dados_usuario.csv)

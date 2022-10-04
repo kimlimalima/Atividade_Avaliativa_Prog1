@@ -1,4 +1,3 @@
-
 def procuraPadrao(cadeia, padrao):
         """
         Documento lido: (dados_DNA.txt)
