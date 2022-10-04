@@ -7,12 +7,12 @@ with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\C
     for linha in file:
         arquivo_tratado.append(linha.strip().split(','))
 
-'''
+
 def procuraNome(nome = ' '):
         """
         Documento lido: (dados_usuario.csv)
 
-        Apresenta a quantidade e uma lista com os registros curja a culuna name do documento inicie com o valor do parâmetro nome.
+        Apresenta a quantidade e uma lista com os registros cujo a culuna name do documento inicie com o valor do parâmetro nome.
 
         Arguments:
         nome : Uma string. Default valor = ' ' (string vazia)
@@ -25,15 +25,17 @@ def procuraNome(nome = ' '):
                 contador = 0
                 for linhas in arquivo_tratado:
                         if nome in linhas[3]:
+                                print(linhas[3])
                                 lista.append(linhas)
                                 contador += 1
                 return contador, lista
         
         except ValueError:
                 print('Valor inválido')
+        except TypeError:
+                print('Tipo de variavel inválida')
                 
-contador, lista = procuraNome('Samuel')
-print(f'{contador}\n{lista}')
+
 
 
 
@@ -54,10 +56,13 @@ def quantidadeGender(ano, sexo):
                 Retorna
         """
         try:
+                
                 if type(sexo) != str: raise TypeError
-                if ano < 0: raise ValueError
+                if ano < 0 and sexo != 'F' and sexo != "M": raise ValueError
                 lista = []
                 contador = 0
+                sexo = sexo.capitalize()
+                print(sexo)
                 for linhas in arquivo_tratado:
                         if sexo in linhas[2]:
                                 if str(ano) <= linhas[1]:
@@ -68,9 +73,6 @@ def quantidadeGender(ano, sexo):
                 print('Tipo de valor inválido')
         except ValueError: 
                 print('Valor inválido')
-                
-contador, lista = quantidadeGender(2002, "F")
-print(contador, lista)
 
 
 def substringARG(arg = ' '):
@@ -79,9 +81,11 @@ def substringARG(arg = ' '):
 
 
                 Arguments:
-                        
+                        arg: Ums string
 
                 Returns:
+                        Retorna a quantidade e uma lista de aparecimentos da substring do mesmo.
+
                 
         """
         try:
@@ -97,19 +101,19 @@ def substringARG(arg = ' '):
         except Exception as e:
                 print(e)
                 
-contador, lista = substringARG('muel')
-print(f'{contador}\n{lista}')
 
 def procuraNumero(numero):
         """
         Documento lido: (dados_usuario.csv)
 
-                
+                Dada a passagem de um argumento para o parâmetro 'numero' da função:
+                Apresenta uma lista de com os Ids dos registros que possuem a coluna {number} do arquivo com valores iguais ao parâmetro {numero}.
 
         Arguments:
-                
+                numero : Uma string. Atríbuida pelo usuário.
 
         Returns:
+                Retorna uma lista com aparições de linhas com a coluna {number} iguais ao parâmetro passado.
                 
         """
         try:
@@ -125,41 +129,37 @@ def procuraNumero(numero):
         except Exception as e:
                 print(e)
                 
-contador, lista = procuraNumero(5)
-print(f'{contador}/n {lista}')
 
-'''
 
 def novo_cadastro(nome = ' ', ano = 0, sexo = ' ', numero =0):
         """
         Documento lido: (dados_usuario.csv)
 
+        Dada a atríbuição múltipla de argumentos para os parâmetros {nome},{ano},{sexo} e {numero} da função:
+        É feita uma atualização do arquivo dados_usuario.csv, realizando assim a adição de uma nova linha no arquivo.
+        Assim que o código é executado com os parâmtros corretos, ocorre uma atualização do ID.
+
         Arguments:
-                
+            nome : Uma string. Atríbuida pelo usuário.
+            ano : Uma string. Atríbuida pelo usuário.
+            sexo : Uma string. Atríbuida pelo usuário.
+            numero : Uma string. Atríbuida pelo usuário.
 
         Returns:
                 
         """
         try:
-            if int(ano) <= 0: raise Exception('Valor inválido')
-            if type(ano) != int and type(ano) != str: raise Exception('Tipo de argumento inválido')
-            if int(numero) <= 0: raise Exception('Valor inválido')
-            if type(numero) != int and type(numero) != str: raise Exception('Tipo de argumento inválido')
-            if type(sexo) != str: raise Exception('Tipo de argumento inválido')
-            if type(nome) != str: raise Exception('Tipo de argumento inválido')
-            id = int(arquivo_tratado[-1][0])+1
-            with open('\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Primeira_Questão\\dados_usuario.csv','a', encoding ='utf-8') as file:
-                file.write(f'{id},{nome},{ano},{sexo},{numero}\n')
-                
+                if int(ano) <= 0: raise Exception('Valor inválido')
+                if type(ano) != int and type(ano) != str: raise Exception('Tipo de argumento inválido')
+                if int(numero) <= 0: raise Exception('Valor inválido')
+                if type(numero) != int and type(numero) != str: raise Exception('Tipo de argumento inválido')
+                if type(sexo) != str: raise Exception('Tipo de argumento inválido')
+                if type(nome) != str: raise Exception('Tipo de argumento inválido')
+                id = int(arquivo_tratado[-1][0])+1
+                with open('\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Primeira_Questão\\dados_usuario.csv','a', encoding ='utf-8') as file:
+                        file.write(f'{id},{nome},{ano},{sexo},{numero}\n')
+        
         except Exception as e :
-            print(e)
+                print(e)
+            
 
-novo_cadastro('Kim','2002','M', 5)
-
-'''
-
-#quantidadeGender()
-substringARG()
-procuraNumero()
-novo_cadastro()
-'''
