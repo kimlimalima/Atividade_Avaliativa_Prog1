@@ -32,11 +32,8 @@ def testeBoolPrimosEntreSi(primeiroNumero = int, segundoNumero = int):
         except Exception as e:
             print(e)
 
-# resultado = testeBoolPrimosEntreSi(primeiroNumero, segundoNumero)
-# print(resultado)
-
-
-
+resultado = testeBoolPrimosEntreSi(primeiroNumero, segundoNumero)
+print(resultado)
 
 
 from random import randrange
