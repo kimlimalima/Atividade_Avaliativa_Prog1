@@ -43,17 +43,20 @@ def quantidadeGender(ano, sexo):
         """
         Documento lido: (dados_usuario.csv)
 
-        Dada uma quantidade de registros
+        Dada a passagem de argumentos para os parâmetros 'ano' e 'sexo' da função:
+        Apresenta a quantidade de vezes que índices da coluna gender são iguais ao argumento passado para sexo e 
+        year tem um valor maior ou igual ao parâmetro ano.
+        
         Apresenta:
-        gender = Igual ao valor do parâmetro sexo
-        year = Com o valor maior ou igual ao valor do parâmetro ano.
+                gender = Igual ao valor do parâmetro sexo
+                year = Com o valor maior ou igual ao valor do parâmetro ano.
 
         Arguments:
-                ano : Uma String
-                sexo: Uma String. Utilizando o método .capitalize()
+                ano : Uma String. Agumento passado pelo usuário
+                sexo: Uma String. Argumento passado pelo usuário. Deve conter uma string maiúscula
 
         Returns:
-                Retorna
+                Retorna a quantidade e uma lista referente as aparições dos resultados que se adequam aos requisitos constados acima 
         """
         try:
                 
@@ -79,14 +82,16 @@ def substringARG(arg = ' '):
         """
                 Documento lido: (dados_usuario.csv)
 
+                        Dada a passagem de um argumento para o parâmetro 'arg' da função:
+                        Apresenta a quantidade e uma lista de aparecimentos da substring do mesmo.
 
                 Arguments:
-                        arg: Ums string
+                        
+                        arg : uma string. Passado pelo usuário
+                        
 
                 Returns:
                         Retorna a quantidade e uma lista de aparecimentos da substring do mesmo.
-
-                
         """
         try:
                 if type(arg) != str: raise Exception('Tipo de argumento inválido')

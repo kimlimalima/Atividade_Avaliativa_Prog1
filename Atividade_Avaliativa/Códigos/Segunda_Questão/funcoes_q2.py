@@ -33,16 +33,17 @@ cadeia = 'ATGCCCCAACTAAATACCGCCGTATGACCCACCATAATTACCCCCATACTCCTGACACTATTTCTCGTCA
 
 def TestboolPadrao(cadeia, padrao = ' '):
         """
-        Documento lido: (dados_usuario.csv)
+        Documento lido: (dados_DNA.txt)
 
-                        
+        Dada a atribuição múltipla e pocisional de argumentos para os parâmetros {cadeia} e {padrao} da função:
+        Apresenta-se ao usuário o resultado de um teste booleano se possui ou não a string {padrao} na string {cadeia}
 
         Arguments:
-            cadeia : Um string. Passada de forma posicional pelo usuário
-            padrao : Uma string. Passada de forma posiciojal pelo usuário 
-
+                cadeia : Um string. Passada de forma posicional pelo usuário
+                padrao : Uma string. Passada de forma posiciojal pelo usuário
         Returns:
-            Retorna um valor booleano, resultado da verificação de padrão em cadeia
+                Retorna um resultado booleano do teste de {padrao} contém em {cadeia}
+                        
         """
         try:
             if type(padrao) != str: raise Exception("Tipo de padrão inválido")
@@ -56,15 +57,19 @@ def TestboolPadrao(cadeia, padrao = ' '):
 
 def frequenciaPadrao():
     """
-        Documento lido: (dados_usuario.csv)
-
-                        
+        Documento lido: (dados_DNA.txt)
+            Dado o arquivo dados.DNA.txt:
+            Executas-se uma estrutura de códigos que atríbui as colunas:
+                cadeia : Refere-se a string {cadeia}
+                fre
 
         Arguments:
-                        
+                
 
         Returns:
-                        
+                Retorna a criação das novas colunas {FREQ_ATGCCA} e {TEM_ATGCCA} assim como atribui as mesma valores referentes:
+                A frequencia: Extráida com a função {procuraPadrao}
+                O resultado booleano do teste feito pela função {TestboolPadrao}
     """
 
     with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Segunda_Questão\\dados_DNA.txt',encoding='utf-8') as file:
@@ -77,7 +82,7 @@ def frequenciaPadrao():
             tem = TestboolPadrao(cadeia, 'ATGCCA')
             file.write(f'{cadeia[:-1]},{freq},{tem}\n')
 
-frequenciaPadrao()
+
 
 
 arquivo_tratado = []
@@ -89,14 +94,17 @@ with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\C
 
 def naoPossuemPadrao():
     """
-        Documento lido: (dados_usuario.csv)
-
+        Documento lido: (dados_DNA.txt)
+        Dado o arquivo dados.DNA.txt:
+        Apresenta-se a quantidade de sequências que não possuem o padrão {ATGCCA}
                         
 
         Arguments:
                         
 
         Returns:
+        
+        Retorna o a váriavel {contador} atualizada com a quantidade de vezes em que não ocorre o aparecimento do padrão {ATGCCA} no arquivo (dados_DNA.txt)
                         
     """
     contador = 0
@@ -104,18 +112,20 @@ def naoPossuemPadrao():
         if linha[2] == 'False':
             contador += 1
     return contador
-naoPossuemPadrao()
+
 
 def maximoPadrao():
     """
         Documento lido: (dados_DNA.txt)
 
-                        
+        Dado o arquivo dados_DNA.txt já com a atualização de colunas:
+        Apresenta-se a frequência máxima do padrão {ATGCCA} possui no conteúdo do arquivo {dados_DNA.txt}
 
         Arguments:
                         
 
         Returns:
+        Retorna a aparição em que possui a frequência máxima do padrão {ATGCCA} no arquivo {dados_DNA.txt}
                         
     """
 
@@ -128,19 +138,22 @@ def maximoPadrao():
 
     return maior
 
-maximoPadrao()
+
 
 
 def frequenciaMaximaPadrao():
     """
         Documento lido: (dados_DNA.txt)
 
+        Dado o arquivo dados_DNA.txt já com a atualização de colunas:
+        Apresenta-se os índices das linhas que possuem frequencia igual ao valor máximo.
                         
 
         Arguments:
                         
 
         Returns:
+        Retorna uma lista contendo os índices das linhas que possuem a frequência igual ao valor máximo
               
     """
     with open('C:\\Users\\washi\\OneDrive\\Documentos\\aval\\Atividade_Avaliativa\\Códigos\\Segunda_Questão\\dados_DNA.txt', encoding='utf-8') as file:
@@ -155,4 +168,3 @@ def frequenciaMaximaPadrao():
             if frequencia == frequencia_maxima:
                 lista_index.append(indices)
     return lista_index
-frequenciaMaximaPadrao()
